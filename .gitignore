@@ -1,3 +1,6 @@
+# React Build
+build/
+
 # Logs
 logs
 *.log
