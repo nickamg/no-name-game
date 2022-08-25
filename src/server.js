@@ -16,7 +16,7 @@ server.app.use(serve(frontEndAppBuildPath))
 
 server.run(PORT, () => {
   server.app.use(
-    async (ctx, next) => serve(frontEndAppBuildPath)(
+    async (ctx, next) => await serve(frontEndAppBuildPath)(
       Object.assign(ctx, { path: 'index.html' }),
       next
     )
