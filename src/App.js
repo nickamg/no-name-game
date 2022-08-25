@@ -5,10 +5,13 @@ import { HotPotato } from './Game';
 import { HotPotatoBoard } from './Board';
 import { Lobby } from "./Lobby";
 
+const { protocol, hostname, port } = window.location;
+const server = `${protocol}//${hostname}:${port}`;
+
 const HotPotatoClient = Client({
   game: HotPotato,
   board: HotPotatoBoard,
-  multiplayer: SocketIO({ server: 'localhost:8000' }),
+  multiplayer: SocketIO({ server }),
 });
 
 const App = () => {
