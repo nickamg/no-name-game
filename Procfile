@@ -1,2 +1,2 @@
-web: npm run build ; npx serve ./build
-web:  npx run serve 
+web: npx serve ./build
+web: npx run serve 
