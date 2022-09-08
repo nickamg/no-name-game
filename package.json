@@ -9,6 +9,7 @@
     "scripts": {
         "start": "cd ./frontend && npm run build && cd .. && node index.js",
         "server": "node index.js",
-        "build": "cd ./frontend && npm run build"
+        "build": "cd ./frontend && npm install && npm run build",
+        "buildOriginal": "cd ./frontend && npm run build"
     }
 }
