@@ -8,7 +8,7 @@ function App() {
   const [playerName, setPlayerName] = useState('Player Name');
   const [gameName, setGameName] = useState('Game Name');
   const [game, setGame] = useState(null);
-  const [gamesList, setGamesList] = useState([])
+  const [gamesList, setGamesList] = useState(null)
 
   useEffect(() => {
     socket.on('listGames', data => {
@@ -32,12 +32,10 @@ function App() {
   const listGames = () => socket.emit('listGames')
   const startGame = () => socket.emit('startGame', { gameId: game.id })
 
-  const getPlayerNames = () => Array.from(game.players.values(), player => player.name);
-
   if (game) {
     return (
       <div>
-        <GameBoard game={game} />
+        <GameBoard game={ game } startGame={ startGame }/>
       </div>
     )
   } else {
@@ -47,12 +45,12 @@ function App() {
         <input type='text' id='game-name' name='game-name' onChange={e => setGameName(e.target.value) } value={ gameName } />
         <button onClick={ createGame }>Create Game</button>
         <button onClick={ listGames }>List Games</button>
-        {gamesList.map(game => (
+        { gamesList ? gamesList.map(game => (
           <div>
             { game.name } { () => game.players.map(player => (<p>{ player }</p>)) }
             <button onClick={ joinGame } value={ game.id }>Join Game</button>
           </div>
-        ))}
+        )) : ''}
       </div>
     );
   }

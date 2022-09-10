@@ -1,12 +1,17 @@
 import React from 'react';
 
 function GameBoard(props) {
-    const getPlayerNames = () => Array.from(props.game.players.values(), player => player.name);
+    const getPlayers = () => Array.from(props.game.players.values());
 
     if (props.game.status === 'waiting') {
         return (
             <div>
                 Waiting to start
+                <br/>
+                Players:
+                <ul>
+                    { getPlayers().map(player => (<li>{ player.name }</li>)) }
+                </ul>
                 <button onClick={ props.startGame }>START GAME</button>
             </div>
         )
@@ -16,7 +21,17 @@ function GameBoard(props) {
                 Game has started!!
                 Players:
                 <ul>
-                    { getPlayerNames().map(name => (<li>{ name }</li>)) }
+                    { getPlayers().map(player => (<li>{ player.name } - { player.points }</li>)) }
+                </ul>
+            </div>
+        )
+    } else if (props.game.status === 'finished') {
+        return (
+            <div>
+                Game has finished!!
+                Players:
+                <ul>
+                    { getPlayers().map(player => (<li>{ player.name } - { player.points }</li>)) }
                 </ul>
             </div>
         )

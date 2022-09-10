@@ -97,14 +97,16 @@ function Game(name) {
      */
     this.startGame = ()  => {
         if (this.gameIsReady()) {
+            const randomPlayerId = Array.from(this.state.players.keys())[Math.floor(Math.random() * this.state.players.size)];
             this.state.status = 'inProgress';
-            this.state.players.set(this.state.players.keys()[Math.floor(Math.random() * this.state.players.size)], { ...this.state.players, isActive: true });
+            this.state.players.set(randomPlayerId, { ...this.state.players.get(randomPlayerId), isActive: true });
             
             const counter = setInterval(() => {
                 this.getActivePlayer().points++;
             }, 100);
 
             setTimeout(() => {
+                this.state.status = 'finished';
                 clearInterval(counter);
             }, Math.floor(((Math.random() * 30) + 5) * 1000));
         }

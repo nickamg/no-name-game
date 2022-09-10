@@ -13,6 +13,13 @@ function GamesManager() {
     this.gamesList = new Map();
 
     /**
+     * Searchs the Game based on the Game ID and returns it.
+     * @param {string} gameId - Game's ID.
+     * @returns {Game} The Game instance matching the Game ID.
+     */
+    this.getGame = (gameId) => this.gamesList.get(gameId);
+
+    /**
      * Creates a new Game instance and adds it to the Game's List.
      * @param {string} gameName - Game's name.
      * @param {string} playerId - Player's ID.
